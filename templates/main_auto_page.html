@@ -1,0 +1,101 @@
+{% block head%}
+<meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarService</title>
+{%endblock%}
+{% block content %}
+<form action="" method="post">
+    <table border="0" width="100%" style="margin-top:5%; table-layout:fixed; margin-left:5%">
+        <tr>
+            <td width="20%">
+    <!--            <img src="http://cs.gladov.ru/static/img/Koenigsegg-Regera.jpg"-->
+    <!--                                               alt=""-->
+    <!--                                               style="border-radius:50%; border:2px">-->
+                <h1>КУ</h1>
+            </td>
+            <td>
+                <h4 style="text-align:center">Вам нужно сделать следующие работы</h4>
+                <table border="2px" width="80%" style="margin-left:10%">
+                    {% for i in list_no_ready %}
+                    <tr>
+                        {% set hr = '/change_page?button_name=' + i['button_name']%}
+                        <td width="25%">{{i['name']}}</td>
+                        <td width="25%"> {{i['km']}}</td>
+                        <td width="25%">{{i['date']}}</td>
+                        <td width="25%"><a class="btn btn-primary" id={{i['button_name']}} name={{i['button_name']}} style="margin-left:10%;width : 80%" type="button" href={{hr}} >Заменить</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    {{form.km.label}}<br>
+                    {{form.km(class='form-control')}}<br>
+                    {{form.km_button(class='btn btn-primary', style="margin-left:30%; width:40%; margin-top:2%")}}
+                </p>
+                <p style="margin-top:30%">
+                    <h2 style="text-align:center">Характеристики автомобиля</h2>
+                    {{form.mark.label}}<br>
+                    {{form.mark(class='form-control')}}<br>
+                </p>
+                <p>
+                    {{form.model.label}}<br>
+                    {{form.model(class='form-control')}}<br>
+                </p>
+                <p>
+                    {{form.gen.label}}<br>
+                    {{form.gen(class='form-control')}}<br>
+                </p>
+                <p>
+                    {{form.year.label}}<br>
+                    {{form.year(class='form-control')}}<br>
+                </p>
+                <p>
+                    {{form.vin.label}}<br>
+                    {{form.vin(class='form-control')}}<br>
+                </p>
+                <p>
+                    {{form.change_button(class='btn btn-primary', style="margin-left:30%; width:40%; margin-top:2%")}}
+                </p>
+            </td>
+            <td>
+                <h4 style="text-align:center">Вам предстоят следующие работы</h4>
+                <table border="2px" width="80%" style="margin-left:10%">
+                    {% for i in list_will_be%}
+                    <tr>
+                        {% set hr = '/change_page?button_name=' + i['button_name']%}
+                        <td width="25%">{{i['name']}}</td>
+                        <td width="25%">{{i['km']}}</td>
+                        <td width="25%">{{i['date']}}</td>
+                        <td width="25%"><a class="btn btn-primary" id={{i['button_name']}} name={{i['button_name']}} style="margin-left:10%;width : 80%" type="button" href={{hr}}>Заменить</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td>
+                <h4 style="text-align:center">История работ</h4>
+                <table border="2px" width="80%" style="margin-left:10%">
+                    {% for i in list_history %}
+                        <tr>
+                            <td width="14.3%">{{i['name']}}</td>
+                            <td width="14.3%">{{i['km']}}</td>
+                            <td width="14.3%">{{i['date']}}</td>
+                            <td width="14.3%">{{i['link']}}</td>
+                            <td width="14.3%">{{i['price']}}</td>
+                            <td width="14.3%">{{i['text']}}</td>
+                            <td width="14.3%">{{i['photo']}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+{%endblock%}

@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% block head %}
+<title> Вход </title>
+{% endblock %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag()}}
+    <table border="0" width="100%" style="margin-top:3%">
+        <tr>
+            <td width="46%" height='100%'><img src="http://cs.gladov.ru/static/img/1535546160.jpg"
+                                               alt=""
+                                               style="vertical-align:middle; width:100% ; margin-left:5%">
+            </td>
+            <td>
+                <h1 style="text-align:right; margin-right:15%; margin-top:0%"> Введите точные данные замены</h1>
+                <p>
+                    {{ form.km.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.km(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.date.label(style = "margin-left: 25%")}}<br>
+                    {{ form.date(class="form-control right-align", style ="width:60%; margin-left:25%") }}<br>
+                </p>
+                <p>
+                    {{ form.price.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.price(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.link.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.link(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.text.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.text(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.photo.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.photo(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>{{ form.change_button(type="submit", class="btn btn-primary", style = "margin-left:35%;
+                    width : 40%; margin-top: 5%") }}
+                </p>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

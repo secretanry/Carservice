@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% block head %}
+<title> Добавление работ </title>
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {{ form.hidden_tag()}}
+    <h1 style="text-align:center; margin-top:0%">Добавьте работы для {{car}}</h1>
+    <table border="0" width="100%" style="margin-top:12%">
+        <tr>
+            <td width="33%">
+                <div class="list-group" style="width:90%; margin-left:5%">
+                <a href="/work_adding?value=Масло в двигателе(10000)" class="list-group-item list-group-item-action">Масло в двигателе(10000)</a>
+                <a href="/work_adding?value=Масло в трансмиссии(50000)" class="list-group-item list-group-item-action">Масло в трансмиссии(50000)</a>
+                <a href="/work_adding?value=Фильтр салонный(12мес)" class="list-group-item list-group-item-action">Фильтр салонный(12мес)</a>
+                <a href="/work_adding?value=Чистка кондиционера(12мес)" class="list-group-item list-group-item-action">Чистка кондиционера(12мес)</a>
+                <a href="/work_adding?value=Ремень ГРМ(100000)" class="list-group-item list-group-item-action">Ремень ГРМ(100000)</a>
+                </div>
+            </td>
+            <td width="33%">
+                {{form.center.label(style="margin-left:5%")}}
+                {{form.center(class='form-control', readonly=True, style="width:90%; margin-left:5%")}}
+            </td>
+            <td>
+                <div style="width:90%; margin-left:5%">
+                <p style="margin-top:10%">
+                {{form.name.label}}
+                {{form.name(class='form-control')}}
+                </p>
+                <p>
+                {{form.km.label}}
+                {{form.km(class='form-control')}}
+                </p>
+                <p>
+                {{form.period.label}}
+                {{form.period(class='form-control')}}
+                </p>
+                </div>
+                <p>
+                    {{form.add_button(type="submit", class='btn btn-primary', style = "margin-left:38%; width:25%")}}
+                </p>
+            </td>
+        </tr>
+    </table>
+    {{form.ready_button(type="submit", class='btn btn-primary', style = "margin-left:35%; width:30%")}}
+</form>
+{% endblock %}

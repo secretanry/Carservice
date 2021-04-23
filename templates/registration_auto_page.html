@@ -1,0 +1,54 @@
+{% extends "basic.html"%}
+{% block head%}
+<title> Регистрация автомобилей</title>
+{% endblock %}
+{%block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <table border=0 width="100%" style="margin-top:5%">
+        <tr>
+            <td width="46%" height="100%"><img
+                    src="http://cs.gladov.ru/static/img/koenigsegg-agera-r-front-three-5468fa58375c5.jpg"
+                    alt=""
+                    style="vertical-align:middle; width:100% ; margin-left:5%">
+            </td>
+            <td>
+                <h1 style="text-align:right; margin-right:19%; margin-top:0%">Введите данные автомобиля</h1>
+                <p>
+                    {{ form.photo.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.photo(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.mark.label(style = "margin-left: 25%")}}<br>
+                    {{ form.mark(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.model.label(style = "margin-left: 25%")}}<br>
+                    {{ form.model(class="form-control right-align", style = "width:60%; margin-left:25%") }}<br>
+                </p>
+                <p>
+                    {{ form.gen.label(style = "margin-left: 25%")}}<br>
+                    {{ form.gen(class="form-control right-align", style = "width:60%; margin-left:25%") }}<br>
+                </p>
+                <p>
+                    {{ form.km.label(style = "margin-left: 25%;")}}<br>
+                    {{ form.km(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.year.label(style = "margin-left: 25%;")}}<br>
+                    {{ form.year(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.vin.label(style = "margin-left: 25%;")}}<br>
+                    {{ form.vin(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>{{ form.add_button(type="submit", class="btn btn-primary", style = "margin-left:35%;
+                    width : 40%") }}
+                    <a type="submit" role="button" href="/work_adding" class="btn btn-primary"
+                       style="margin-left:35%;width : 40%; margin-top:1%">Готово</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

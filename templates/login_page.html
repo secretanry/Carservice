@@ -1,0 +1,34 @@
+{% extends 'basic.html' %}
+{% block head %}
+<title> Вход </title>
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {{ form.hidden_tag()}}
+    <table border="0" width="100%" style="margin-top:12%">
+        <tr>
+            <td width="46%" height='100%'><img src="http://cs.gladov.ru/static/img/Koenigsegg-Regera.jpg"
+                                               alt=""
+                                               style="vertical-align:middle; width:100% ; margin-left:5%">
+            </td>
+            <td>
+                <h1 style="text-align:right; margin-right:15%; margin-top:0%"> Приветствуем вас, пользователь</h1>
+                <p>
+                    {{ form.login.label(style = "margin-left: 25%; margin-top:5%")}}<br>
+                    {{ form.login(class = "form-control", style = "margin-left:25%; width:60%")}}<br>
+                </p>
+                <p>
+                    {{ form.password.label(style = "margin-left: 25%")}}<br>
+                    {{ form.password(class="form-control right-align", style ="width:60%; margin-left:25%",
+                    type="password") }}<br>
+                </p>
+                <p>{{ form.submit_button(type="submit", class="btn btn-primary", style = "margin-left:35%;
+                    width : 40%; margin-top: 5%") }}
+                    <a type="submit" name="reg" role="button" href="/registration" class="btn btn-primary"
+                       style="margin-left:35%; width:40%;margin-top: 1%">Зарегистрироваться</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
