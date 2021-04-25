@@ -3,14 +3,14 @@
 <title> Вход </title>
 {% endblock %}
 {% block content %}
-<table border="2px" width="100%" style="margin-top:12%">
+<table border="0" width="100%" style="margin-top:12%">
     {% for i in rows %}
     <tr>
         <td width="50%">
             <div style="margin-left:10%; width:80%">
                 <img src="data:image/jpg;base64, {{list[i * 2]['photo']}}" style="width:100%">
             </div>
-            {% set name=list[i * 2]['mark'] + list[i * 2]['model'] + list[i * 2]['year'] %}
+            {% set name=list[i * 2]['mark'] + ' ' + list[i * 2]['model'] + ' ' + list[i * 2]['year'] %}
             <div style="text-align:center">
                 <a href="/main_page?car_id={{list[i * 2]['car_id']}}"><h1>{{name}}</h1></a>
             </div>
@@ -19,7 +19,7 @@
             <div style="margin-left:10%; width:80%">
                 <img src="data:image/jpg;base64, {{list[i * 2 + 1]['photo']}}" style="width:100%">
             </div>
-            {% set name=list[i * 2 + 1]['mark'] + list[i * 2 + 1]['model'] + list[i * 2 + 1]['year'] %}
+            {% set name=list[i * 2 + 1]['mark'] + ' ' + list[i * 2 + 1]['model'] + ' ' + list[i * 2 + 1]['year'] %}
             <div style="text-align:center">
             <a href="/main_page?car_id={{list[i * 2 + 1]['car_id']}}"><h1>{{name}}</h1></a>
             </div>
@@ -30,7 +30,7 @@
     <table border="0" width="100%" style="margin: top 0">
     <tr>
         <td width='100%'>
-            <div style="margin-left:30%; width:10%">
+            <div style="margin-left:30%; width:40%">
                 <img src="data:image/jpg;base64, {{list[-1]['photo']}}" style="width:100%">
             </div>
             {% set name=list[-1]['mark'] + list[-1]['model'] + list[-1]['year'] %}

@@ -295,6 +295,9 @@ def main_page():
                  'vin': form.vin.data})
             db_sess.commit()
         elif 'km_button' in request.form:
+            if car.km > form.km.data:
+                flash('Некорректный пробег')
+                return redirect('/main_page?car_id=' + str(my_car)
             db_sess.query(Cars).filter_by(id=my_car).update({'km': form.km.data})
             db_sess.commit()
         return redirect('/main_page?car_id=' + str(my_car))
