@@ -263,6 +263,7 @@ def main_page():
         my_car = int(request.args['car_id'])
         car = db_sess.query(Cars).filter_by(id=my_car)[0]
         km = car.km
+        photo = str(base64.b64encode(car.photo)).lstrip("b'").rstrip("'")
         form.km.data = car.km
         form.mark.data = car.mark
         form.model.data = car.model
@@ -311,7 +312,7 @@ def main_page():
             db_sess.commit()
         return redirect('/main_page?car_id=' + str(my_car))
     return render_template('main_auto_page.html', form=form, list_no_ready=list_no_ready, list_will_be=list_will_be,
-                           list_history=list_history)
+                           list_history=list_history, photo=photo)
 
 
 @app.route('/change_page', methods=['GET', 'POST'])
