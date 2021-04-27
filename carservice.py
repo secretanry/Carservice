@@ -15,7 +15,7 @@ from flask_wtf.file import FileAllowed, FileRequired
 from sqlalchemy import desc
 import base64
 import calendar
-# from dateutil.relativedelta import *
+from dateutil.relativedelta import relativedelta
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -279,25 +279,32 @@ def main_page():
                  'link': history.link, 'text': history.text, 'photo': ''})
         for work in db_sess.query(Works).filter_by(car_id=my_car):
             hist = db_sess.query(History).filter_by(car_id=my_car, work_id=work.id).order_by(desc(History.km)).limit(1)
-            # if not work.km:
-            #     a = hist.date
-            #     res = a + relativedelta(month+=int(str(work.date).rstrip('мес')))
-            #     if res > datetime.datetime.now().date:
-            #         list_will_be.append({'name': work.name, 'km': '', 'date': res, 'button_name': 'button_' + str(work.id)})
-            #     else:
-            #         list_no_ready.append({'name': work.name, 'km': '', 'date': res, 'button_name': 'button_' + str(work.id)})
-            # else:            
-            target_km = 0
-            if hist.count() == 0:
-                target_km = work.km
-            else:
-                target_km = hist[0].km + work.km
-            if km > target_km:
-                list_no_ready.append(
-                    {'name': work.name, 'km': str(target_km), 'date': '', 'button_name': 'button_' + str(work.id)})
-            else:
-                list_will_be.append(
-                    {'name': work.name, 'km': str(target_km), 'date': '', 'button_name': 'button_' + str(work.id)})
+            if not work.km:
+                target_date = ''
+                if hist.count() == 0:
+                    d = db_sess.query(History).filter_by(car_id=my_car).order_by(desc(History.date)).limit(1)
+                    if d.count() != 0:
+                        target_date = (d[0] + relativedelta(month=int(str(work.date).rstrip('мес')))).date()
+                    else:
+                        target_date = (datetime.datetime.now() + relativedelta(month=int(str(work.date).rstrip('мес')))).date()
+                else:
+                    target_date = (hist[0].date() + relativedelta(month=int(str(work.date).rstrip('мес')))).date()
+                if target_date > datetime.datetime.now().date():
+                    list_will_be.append({'name': work.name, 'km': '', 'date': target_date, 'button_name': 'button_' + str(work.id)})
+                else:
+                    list_no_ready.append({'name': work.name, 'km': '', 'date': target_date, 'button_name': 'button_' + str(work.id)})
+            else:            
+                target_km = 0
+                if hist.count() == 0:
+                    target_km = work.km
+                else:
+                    target_km = hist[0].km + work.km
+                if km > target_km:
+                    list_no_ready.append(
+                        {'name': work.name, 'km': str(target_km), 'date': '', 'button_name': 'button_' + str(work.id)})
+                else:
+                    list_will_be.append(
+                        {'name': work.name, 'km': str(target_km), 'date': '', 'button_name': 'button_' + str(work.id)})
     else:
         if 'change_button' in request.form:
             db_sess.query(Cars).filter_by(id=my_car).update(
