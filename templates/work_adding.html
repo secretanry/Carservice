@@ -5,6 +5,9 @@
 {% block content %}
 <form action="" method="post">
     {{ form.hidden_tag()}}
+    {% if message %}
+    <p style="text-align: center; background-color:  #ec7063 ;">{{ message }}</p>
+    {% endif %}
     <h1 style="text-align:center; margin-top:0%">Добавьте работы для {{car}}</h1>
     <table border="0" width="100%" style="margin-top:12%">
         <tr>
