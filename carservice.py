@@ -259,9 +259,9 @@ def main_page():
         {'name': 'name_1', 'km': '2', 'date': '', 'price': '', 'link': '', 'text': '',
          'photo': ''}
     ]
+    car = db_sess.query(Cars).filter_by(id=my_car)[0]
     if request.method == 'GET':
         my_car = int(request.args['car_id'])
-        car = db_sess.query(Cars).filter_by(id=my_car)[0]
         km = car.km
         photo = str(base64.b64encode(car.photo)).lstrip("b'").rstrip("'")
         form.km.data = car.km
@@ -305,7 +305,7 @@ def main_page():
                  'vin': form.vin.data})
             db_sess.commit()
         elif 'km_button' in request.form:
-            if car.km > form.km.data:
+            if car.km > int(form.km.data):
                 flash('Некорректный пробег')
                 return redirect('/main_page?car_id=' + str(my_car))
             db_sess.query(Cars).filter_by(id=my_car).update({'km': form.km.data})

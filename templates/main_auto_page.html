@@ -7,6 +7,15 @@
 {%endblock%}
 {% block content %}
 <form action="" method="post">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <ul class=flashes>
+            {% for message1 in messages %}
+              <li style="text-align: center; background-color: #ec7063;">{{ message1 }}</li>
+            {% endfor %}
+          </ul>
+      {% endif %}
+      {% endwith %} 
     <table border="0" width="100%" style="margin-top:5%; table-layout:fixed; margin-left:5%">
         <tr>
             <td width="20%">
