@@ -33,7 +33,7 @@
             <div style="margin-left:30%; width:40%">
                 <img src="data:image/jpg;base64, {{list[-1]['photo']}}" style="width:100%">
             </div>
-            {% set name=list[-1]['mark'] + list[-1]['model'] + list[-1]['year'] %}
+            {% set name=list[-1]['mark'] + ' ' + list[-1]['model'] + ' ' + list[-1]['year'] %}
             <div style="text-align:center">
                 <a href="/main_page?car_id={{list[-1]['car_id']}}"><h1>{{name}}</h1></a>
             </div>
